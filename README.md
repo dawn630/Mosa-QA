@@ -147,45 +147,6 @@ print(train_data[0]["question"])
 print(train_data[0]["fine_grained_labels"])
 ```
 
-## 8. 公开说明
-
-本次公开版本仅保留任务建模所需的核心文本与标签字段，不包含以下信息：
-
-- 音频文件
-- 音频本地路径
-- 用户身份信息
-- 性别、年龄、地区、就业情况等个人信息
-
-如果后续需要发布音频版本，建议单独补充更严格的授权说明、脱敏策略与使用协议。
-
-## 9. 使用限制与伦理说明
-
-使用本数据集时请注意：
-
-- 数据仅应用于学术研究与教育技术相关研究用途
-- 请勿尝试还原、识别或关联任何个人身份信息
-- 请勿将数据用于与评分任务无关的个体画像、身份推断或其他潜在敏感用途
-- 使用者应遵守所在机构关于数据合规、隐私保护和研究伦理的相关要求
-
-如果你计划在公开系统、商业系统或在线服务中使用本数据集，建议先补充必要的合规审核与授权确认。
-
-## 10. 引用
-
-如果你在论文、报告或项目中使用了本数据集，建议使用如下引用格式并根据你的论文信息补全：
-
-```bibtex
-@dataset{scenario_speaking_assessment_dataset,
-  title     = {Scenario-based Chinese Spoken Response Assessment Dataset},
-  author    = {Author Placeholder},
-  year      = {2026},
-  publisher = {GitHub},
-  note      = {Train/eval split with overall and fine-grained labels}
-}
-```
-
-## 11. 联系方式
-
-如果你希望补充说明数据构建流程、标注规则、切分策略或实验设置，可以在仓库中进一步添加：
 
 - `LICENSE`
 - `CITATION.cff`
