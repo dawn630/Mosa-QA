@@ -1,75 +1,60 @@
-# 情景问答口语评分数据集
+# Spoken Q&A Scoring Dataset
+This repository releases a dataset for the automatic scoring of **Chinese spoken scenario-based question answering**. It is designed to evaluate the quality of learners' oral responses in real-life scenarios, and supports overall score prediction as well as fine-grained dimension modeling.
 
-本仓库发布一个面向中文口语情景问答自动评分任务的数据集。数据集用于研究学习者在给定生活化场景中的口语回答质量评估，支持总分预测与细粒度维度建模。
+## 1. Dataset Overview
+Each data sample consists of the core information below:
+- Context background
+- Question content
+- ASR transcription of the learner's response
+- Manually corrected transcription of the learner's response
+- Overall score label
+- Fine-grained score labels for each sub-question
+- Unique sample ID
 
-## 1. 数据集简介
+This dataset is applicable to the following research tasks:
+- Automatic scoring for Chinese spoken language
+- Joint prediction of overall scores and fine-grained metrics in multi-task learning
+- Comparative analysis between ASR transcripts and human-corrected transcripts
+- Scoring modeling for mixed scenarios with 1, 2 or 3 questions
 
-每条样本包含以下核心信息：
+## 2. File Description
+The main files in the current directory are listed as follows:
+- `最终数据_train.xlsx`: Training set (Excel format)
+- `最终数据_eval.xlsx`: Evaluation set (Excel format)
+- `最终数据_train.json`: Training set (JSON format)
+- `最终数据_eval.json`: Evaluation set (JSON format)
+- `最终数据.xlsx`: Raw comprehensive workbook
 
-- 题目背景
-- 题目文本
-- 学生回答的 ASR 文本
-- 学生回答的人工转录文本
-- 总分标签
-- 各小题细粒度评分标签
-- 样本唯一 `id`
+Notes:
+- Excel files retain major text content and label fields from the original workbook.
+- JSON files are the recommended structured versions for public release.
+- The JSON files adopt standard JSON array format, not JSONL.
 
-该数据集适用于以下任务：
+## 3. Dataset Statistics
+Statistics of the current version:
+- Total samples: 5663
+- Training set: 3964
+- Evaluation set: 1699
 
-- 中文口语自动评分
-- 多任务学习中的总分与细粒度联合预测
-- ASR 文本与人工转录文本的对比研究
-- 单问、双问、三问混合场景下的评分建模
+Distribution by number of questions per sample:
+- Samples with 1 question: 348
+- Samples with 2 questions: 4718
+- Samples with 3 questions: 597
 
-## 2. 文件说明
+## 4. Data Splitting
+The training and evaluation sets use a fixed split adopted in the final experimental version of the project.
+- Random seed: 42
+- Test set ratio: 0.3
 
-当前目录包含以下主要文件：
+The splitting process takes the following factors into account:
+- Distribution of overall scores
+- Number of questions per sample
+- Question type information
 
-- `最终数据_train.xlsx`：训练集 Excel 文件
-- `最终数据_eval.xlsx`：测试集 Excel 文件
-- `最终数据_train.json`：训练集 JSON 文件
-- `最终数据_eval.json`：测试集 JSON 文件
-- `最终数据.xlsx`：原始汇总工作簿
+This split serves as a reproducible standard benchmark for public use.
 
-其中：
-
-- `xlsx` 文件保留了原始工作簿中的主要文本与标签字段
-- `json` 文件为公开发布时推荐直接使用的结构化版本
-- `json` 文件是标准 JSON 数组格式，不是 JSONL
-
-## 3. 数据规模
-
-当前版本数据规模如下：
-
-- 总样本数：`5663`
-- 训练集：`3964`
-- 测试集：`1699`
-
-题目数量分布如下：
-
-- 单问样本：`348`
-- 双问样本：`4718`
-- 三问样本：`597`
-
-## 4. 划分方式
-
-训练集与测试集采用固定划分，来源于项目中的最终实验切分版本。
-
-- 随机种子：`42`
-- 测试集比例：`0.3`
-
-划分时综合考虑了以下因素：
-
-- 总分分布
-- 题目数量
-- 题型信息
-
-因此，该划分适合作为可复现的公开基准划分。
-
-## 5. JSON 字段说明
-
-`最终数据_train.json` 与 `最终数据_eval.json` 中的每条样本结构如下：
-
+## 5. JSON Field Specification
+The structure of each entry in `最终数据_train.json` and `最终数据_eval.json` is shown below:
 ```json
 {
   "id": "1",
@@ -94,63 +79,33 @@
 }
 ```
 
-字段含义如下：
+Field explanations:
+- `id`: Unique sample ID, corresponding to the serial number in the original workbook
+- `background`: Scenario background
+- `question`: Question text, containing 1 to 3 sub-questions
+- `student_answer_asr`: Raw ASR output of the learner's response
+- `student_answer_transcript`: Manually revised transcription of the learner's response
+- `score`: Overall score label (range: 0-8)
+- `fine_grained_labels`: Fine-grained scores for each sub-question
 
-- `id`：样本唯一编号，对应原始工作簿中的 `序列`
-- `background`：题目背景
-- `question`：题目文本，可能包含 1 至 3 个子问题
-- `student_answer_asr`：学生回答的 ASR 识别结果
-- `student_answer_transcript`：学生回答的人工转录文本
-- `score`：总分标签，范围 `0-8`
-- `fine_grained_labels`：各小题细粒度标签
+Additional notes:
+- For samples with only 1 or 2 sub-questions, the fields for non-existent questions are marked as `null`.
+- `student_answer_transcript` is concatenated from manual transcripts of all sub-questions in order.
 
-说明：
+## 6. Label Definition
+The dataset includes **one overall score** and **three fine-grained scoring dimensions**.
 
-- 如果样本只有 1 个或 2 个小题，不存在的小题字段记为 `null`
-- `student_answer_transcript` 由各小题人工转录文本按顺序拼接得到
+### 6.1 Overall Score
+- `score`: Value range 0-8
 
-## 6. 标签定义
+### 6.2 Fine-Grained Labels
+Each sub-question is evaluated across three dimensions:
+- `completeness`: Response completeness (range: 0-3)
+- `relevance`: Task relevance (range: 0-3)
+- `pronunciation`: Pronunciation accuracy (range: 0-4)
 
-数据集包含 1 个总分标签和 3 个细粒度评分维度。
+Supplementary explanation:
+The fields named *Fluency of Question 1 / Question 2 / Question 3* in the original Excel files are uniformly mapped to `relevance` in this dataset. In accordance with the annotation rules and experimental settings, these fields actually measure how well responses align with the given questions.
 
-### 6.1 总分
-
-- `score`：范围 `0-8`
-
-### 6.2 细粒度标签
-
-每个小题包含以下三个维度：
-
-- `completeness`：回答完整度，范围 `0-3`
-- `relevance`：题目相关度，范围 `0-3`
-- `pronunciation`：发音准确度，范围 `0-4`
-
-补充说明：
-
-- 原始 Excel 中的 `第一题题目流畅度 / 第二题题目流畅度 / 第三题题目流畅度` 在本数据集中统一映射为 `relevance`
-- 这是因为该列在当前标注体系与实验处理中实际对应的是切题性 / 相关性维度
-
-## 7. 使用建议
-
-推荐优先使用 `json` 文件进行建模和评估，因为其结构更稳定，也更适合直接被 Python、PyTorch、Transformers 或其他训练框架读取。
-
-一个简单的读取示例如下：
-
-```python
-import json
-
-with open("最终数据_train.json", "r", encoding="utf-8") as f:
-    train_data = json.load(f)
-
-print(len(train_data))
-print(train_data[0]["question"])
-print(train_data[0]["fine_grained_labels"])
-```
-
-
-- `LICENSE`
-- `CITATION.cff`
-- `annotation_guidelines.pdf`
-- `data_statement.md`
-
-这会更适合正式公开与长期维护。
+## 7. Usage Recommendations
+It is recommended to use JSON files for model training and evaluation. They feature more stable structure and can be directly parsed by
