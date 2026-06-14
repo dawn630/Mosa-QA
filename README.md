@@ -19,12 +19,10 @@ This dataset is applicable to the following research tasks:
 
 ## 2. File Description
 The main files in the current directory are listed as follows:
-- `最终数据_train.xlsx`: Training set (Excel format)
-- `最终数据_eval.xlsx`: Evaluation set (Excel format)
-- `最终数据_train.json`: Training set (JSON format)
-- `最终数据_eval.json`: Evaluation set (JSON format)
-- `最终数据.xlsx`: Raw comprehensive workbook
-
+- `train.xlsx`: Training set (Excel format)
+- `test.xlsx`: Evaluation set (Excel format)
+- `train.json`: Training set (JSON format)
+- `test.json`: Evaluation set (JSON format)
 Notes:
 - Excel files retain major text content and label fields from the original workbook.
 - JSON files are the recommended structured versions for public release.
