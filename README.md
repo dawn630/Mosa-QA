@@ -106,4 +106,16 @@ Supplementary explanation:
 The fields named *Fluency of Question 1 / Question 2 / Question 3* in the original Excel files are uniformly mapped to `relevance` in this dataset. In accordance with the annotation rules and experimental settings, these fields actually measure how well responses align with the given questions.
 
 ## 7. Usage Recommendations
-It is recommended to use JSON files for model training and evaluation. They feature more stable structure and can be directly parsed by
+It is recommended to prioritize using `json` files for modeling and evaluation, as they feature a more stable structure and can be directly parsed by Python, PyTorch, Transformers, and other training frameworks with ease.
+
+A simple loading example is provided below:
+```python
+import json
+
+with open("final_data_train.json", "r", encoding="utf-8") as f:
+    train_data = json.load(f)
+
+print(len(train_data))
+print(train_data[0]["question"])
+print(train_data[0]["fine_grained_labels"])
+```
