@@ -52,7 +52,7 @@ The splitting process takes the following factors into account:
 This split serves as a reproducible standard benchmark for public use.
 
 ## 5. JSON Field Specification
-The structure of each entry in `最终数据_train.json` and `最终数据_eval.json` is shown below:
+The structure of each entry in `train.json` and `eval.json` is shown below:
 ```json
 {
   "id": "1",
