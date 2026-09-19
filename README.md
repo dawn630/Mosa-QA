@@ -1,21 +1,3 @@
-# Audio Access and Privacy Notice
-
-To protect learner privacy and comply with the relevant data-use restrictions, raw speech audio files are not included in this public repository. If you need access to the audio data for academic research or verification, please contact the dataset author by email:
-
-**107552401324@stu.xju.edu.cn**
-
-Please briefly describe your intended use and follow the applicable data-protection and research-ethics requirements.
-
-## Sample Audio
-
-For format verification and basic reproducibility checks, the repository may include a small set of representative audio samples under:
-
-```text
-sample_audio/
-```
-
-These files are provided only as example audio and do not represent the complete dataset. The sample files should be used together with their corresponding `id` values in `train.json` or `test.json`. Access to the complete audio collection remains restricted for privacy and data-use reasons. Please contact the dataset author by email if the full audio data are required for academic research or result verification.
-
 # MOSA-QA: Chinese Spoken Scenario-Based Q&A Scoring Dataset
 
 This repository releases a dataset for automatic assessment of Chinese spoken responses in scenario-based question-answering tasks. Each sample contains a scenario background, one to three questions, learner response transcriptions, an overall score, and fine-grained labels for each sub-question.
@@ -447,16 +429,21 @@ Users should:
 - Report the exact transcription condition used in experiments.
 - Clearly distinguish ASR-only, manual-transcription, dual-text, and audio-based settings.
 
-## 14. Citation
+# Audio Access and Privacy Notice
 
-If you use this dataset, please cite the corresponding MOSA-QA paper. A BibTeX entry can be added after the final publication metadata becomes available:
+To protect learner privacy and comply with the relevant data-use restrictions, raw speech audio files are not included in this public repository. If you need access to the audio data for academic research or verification, please contact the dataset author by email:
 
-```bibtex
-@dataset{mosa_qa,
-  title     = {MOSA-QA: Chinese Spoken Scenario-Based Q&A Scoring Dataset},
-  author    = {Anonymous Authors},
-  year      = {2026},
-  publisher = {GitHub},
-  note      = {Dataset release with overall and fine-grained spoken-response labels}
-}
+**107552401324@stu.xju.edu.cn**
+
+Please briefly describe your intended use and follow the applicable data-protection and research-ethics requirements.
+
+## Sample Audio
+
+For format verification and basic reproducibility checks, the repository may include a small set of representative audio samples under:
+
+```text
+sample_audio/
 ```
+
+These files are provided only as example audio and do not represent the complete dataset. The sample files should be used together with their corresponding `id` values in `train.json` or `test.json`. Access to the complete audio collection remains restricted for privacy and data-use reasons. Please contact the dataset author by email if the full audio data are required for academic research or result verification.
+
